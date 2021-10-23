@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Crossout Craft Report</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>rarity</th>
+                <th>category</th>
+                <th>faction</th>
+                <th>craft or buy</th>
+                <th>craft price</th>
+                <th>buy price</th>
+                <th>sell price</th>
+                <th>margin</th>
+                <th>craft time</th>
+                <th>margin per minute</th>
+            </tr>
+            <% for (let item of _.orderBy(items, 'marginPerMin', 'desc')) { %>
+                <tr>
+                    <td><%= item.id %></td>
+                    <td><%= item.name %></td>
+                    <td><%= item.rarity %></td>
+                    <td><%= item.category %></td>
+                    <td><%= item.faction %></td>
+                    <td><%= item.craftOrBuy %></td>
+                    <td><%= _.round(item.craftPrice / 100, 2) %></td>
+                    <td><%= _.round(item.buyPrice / 100, 2) %></td>
+                    <td><%= _.round(item.sellPrice / 100, 2) %></td>
+                    <td><%= _.round(item.margin / 100, 2) %></td>
+                    <td><%= item.craftTime %></td>
+                    <td><%= _.round(item.marginPerMin / 100, 2) %></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

@@ -1,13 +1,19 @@
-const http = require('./lib/http');
 const log = require('./lib/log')('main');
 const _ = require('lodash');
-const Items = require('./lib/items');
+const fs = require('fs');
+const ejs = require('ejs');
+const crossoutDB = require('./lib/crossoutDB');
 
 (async () => {
-    const items = await Items();
-    const response = await http.get('https://crossoutdb.com/api/v1/items');
-    const crossoutItems = _.orderBy(_.filter(response, {craftable: 1, removed: 0}), 'craftingMargin', 'desc');
-    for (let item of crossoutItems) {
-        const result = await items.getItem(item.id);
+    const items = [];
+    for (let {id} of await crossoutDB.getItems()) {
+        const item = await crossoutDB.getItem(id);
+        const margin =  item.sellPrice * 0.9 - item.craftPrice;
+        items.push(Object.assign({}, item, {
+            margin,
+            marginPerMin: margin / item.craftTime,
+        }));
     }
+    const ejsTemplate = fs.readFileSync('report.ejs', 'utf8');
+    fs.writeFileSync('report.html', ejs.render(ejsTemplate, {_, items}), 'utf8');
 })();
