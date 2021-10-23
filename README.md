@@ -2,7 +2,7 @@
 Receives crafting and pricing information from crossoutdb.com and reports about the most profitable crafts
 
 ## Jenkins
-Setup jenkins pipeline using (Jenkinsfile)[Jenkinsfile]
+Setup jenkins pipeline using [Jenkinsfile](Jenkinsfile)
 
 ## Install
 npm & nodejs are required
