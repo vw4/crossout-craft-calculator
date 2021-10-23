@@ -41,10 +41,13 @@ pipeline {
         }
         stage('Report') {
             steps {
-                archiveArtifacts(
-                    artifacts: 'report.html',
-                    onlyIfSuccessful: true
-                )
+                publishHTML([
+                    reportDir: 'report',
+                    includes: 'index.html,css/style.css',
+                    reportFiles: 'index.html',
+                    reportName: 'HTML Report',
+                    reportTitles: ''
+                ])
             }
         }
     }

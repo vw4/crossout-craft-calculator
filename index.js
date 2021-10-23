@@ -14,6 +14,6 @@ const crossoutDB = require('./lib/crossoutDB');
             marginPerMin: margin / item.craftTime,
         }));
     }
-    const ejsTemplate = fs.readFileSync('report.ejs', 'utf8');
-    fs.writeFileSync('report.html', ejs.render(ejsTemplate, {_, items}), 'utf8');
+    const ejsTemplate = fs.readFileSync('./report/template.ejs', 'utf8');
+    fs.writeFileSync('./report/index.html', ejs.render(ejsTemplate, {_, items}), 'utf8');
 })();
