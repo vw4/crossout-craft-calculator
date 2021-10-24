@@ -16,7 +16,7 @@ pipeline {
     parameters {
         extendedChoice name: 'factions',
             value: 'Engineers,Lunatics,Nomads,Scavengers,Steppenwolfs,Dawn\'s Children,Firestarters,Founders,Syndicate',
-            defaultValue: "${factions}",
+            defaultValue: "${params.factions}",
             visibleItemCount: 10,
             multiSelectDelimiter: ',',
             quoteValue: false,
