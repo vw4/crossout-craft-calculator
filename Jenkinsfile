@@ -41,10 +41,16 @@ pipeline {
         }
         stage('Report') {
             steps {
-                archiveArtifacts(
-                    artifacts: 'report/index.html',
-                    onlyIfSuccessful: true
-                )
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: 'report',
+                    reportFiles: 'index.html',
+                    reportName: 'Report',
+                    reportTitles: 'Crossout Craft Calculation',
+                    includes: 'index.html,css/*.*,img/*.*'
+                ])
             }
         }
     }
