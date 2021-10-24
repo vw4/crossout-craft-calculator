@@ -44,10 +44,10 @@ pipeline {
                 publishHTML([
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
-                    keepAll: false,
+                    keepAll: true,
                     reportDir: 'report',
                     reportFiles: 'index.html',
-                    reportName: 'Report',
+                    reportName: "Report #${BUILD_NUMBER}",
                     reportTitles: 'Crossout Craft Calculation',
                     includes: 'index.html,css/*.*,img/*.*'
                 ])
