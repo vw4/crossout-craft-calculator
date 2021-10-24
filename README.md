@@ -16,4 +16,4 @@ npm install
 ```
 npm run start
 ```
-Resuts are saved to `report.html`
+Resuts are saved to `report/index.html`
