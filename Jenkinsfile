@@ -10,6 +10,7 @@ pipeline {
         disableConcurrentBuilds()
         timestamps()
         timeout(15)
+        githubProjectProperty(projectUrlStr: 'https://github.com/vw4/crossout-craft-calculator/')
     }
 
     stages {
