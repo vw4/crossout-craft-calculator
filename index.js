@@ -3,10 +3,17 @@ const _ = require('lodash');
 const fs = require('fs');
 const ejs = require('ejs');
 const crossoutDB = require('./lib/crossoutDB');
+const yargs = require('yargs/yargs');
 
 (async () => {
+    const argv = yargs(process.argv).argv;
+    const factions = _.compact(_.map((argv.factions || '').split(','), s => s.trim()));
+    let catalog = await crossoutDB.getItems();
+    if (factions.length) {
+        catalog = _.filter(catalog, ({faction}) => factions.includes(faction));
+    }
     const items = [];
-    for (let {id} of await crossoutDB.getItems()) {
+    for (let {id} of catalog) {
         const item = await crossoutDB.getItem(id);
         const margin =  item.sellPrice * 0.9 - item.craftPrice;
         items.push(Object.assign({}, item, {

@@ -13,6 +13,16 @@ pipeline {
         githubProjectProperty(projectUrlStr: 'https://github.com/vw4/crossout-craft-calculator/')
     }
 
+    parameters {
+        extendedChoice name: 'factions',
+            value: 'Engineers,Lunatics,Nomads,Scavengers,Steppenwolfs,Dawn\'s Children,Firestarters,Founders,Syndicate',
+            defaultValue: "${factions}",
+            visibleItemCount: 10,
+            multiSelectDelimiter: ',',
+            quoteValue: false,
+            saveJSONParameterToFile: false,
+            type: 'PT_CHECKBOX'
+    }
     stages {
         stage('Clean') {
             steps {
@@ -37,7 +47,7 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh 'npm run start'
+                sh 'npm run start -- --factions="${factions}"'
             }
         }
         stage('Report') {

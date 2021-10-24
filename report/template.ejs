@@ -4,11 +4,14 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <% const factions = _.uniq(_.map(items, 'faction')).sort();
+    if (factions.length > 1) { %>
     <div class="filters-wrapper">
-        <% for (let faction of _.uniq(_.map(items, 'faction')).sort()) { %>
+        <% for (let faction of factions) { %>
             <label><input type="checkbox" name="faction" value="<%=faction%>" class="faction-filter" checked><%=faction%></label>
         <% } %>
     </div>
+    <% } %>
     <div class="table-wrapper">
         <table class="table">
             <thead>
