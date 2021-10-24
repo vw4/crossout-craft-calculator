@@ -1,75 +1,14 @@
 <html>
 <head>
     <title>Crossout Craft Report</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-        }
-
-        body {
-            font-family: Helvetica;
-            -webkit-font-smoothing: antialiased;
-            background: #ffb681;
-        }
-
-        .table-wrapper {
-            margin: 10px 70px 70px;
-            box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .table {
-            border-radius: 5px;
-            font-size: 17px;
-            font-weight: normal;
-            border: none;
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 100%;
-            white-space: nowrap;
-            background-color: white;
-        }
-
-        .table td, .table th {
-            text-align: left;
-            padding: 8px;
-        }
-
-        .table td {
-            border-right: 1px solid #f8f8f8;
-        }
-
-        .table tr:nth-child(even) {
-            background: #f8f8f8;
-        }
-
-        .rarity-Common {
-            color: #696969;
-        }
-
-        .rarity-Rare {
-            color: #0040fd;
-        }
-
-        .rarity-Special {
-            color: #33cccc;
-        }
-
-        .rarity-Epic {
-            color: #6a0082;
-        }
-
-        .rarity-Legendary {
-            color: #daa520;
-        }
-
-        .rarity-Relic {
-            color: #d2691e;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <div class="filters-wrapper">
+        <% for (let faction of _.uniq(_.map(items, 'faction')).sort()) { %>
+            <label><input type="checkbox" name="faction" value="<%=faction%>" class="faction-filter" checked><%=faction%></label>
+        <% } %>
+    </div>
     <div class="table-wrapper">
         <table class="table">
             <thead>
@@ -89,23 +28,31 @@
                 </tr>
             </thead>
             <tbody>
-                <% for (let item of _.orderBy(items, 'marginPerMin', 'desc')) { %>
-                <tr>
+                <% for (let item of _.orderBy(items, 'marginPerMin', 'desc').filter(item => item.rarity !== 'Common')) { %>
+                <tr class="rarity-<%= item.rarity %>" data-faction="<%=item.faction%>">
                     <td><%= item.id %></td>
-                    <td><a target="_blank" href="https://crossoutdb.com/item/<%= item.id %>"><%= item.name %></a></td>
-                    <td><span class="rarity-<%= item.rarity %>"><%= item.rarity %></span></td>
+                    <td><img src="./img/db.png" alt="crossout DB" height="14">&nbsp;<a target="_blank" href="https://crossoutdb.com/item/<%= item.id %>"><%= item.name %></a></td>
+                    <td><span class="rarity"><%= item.rarity %></span></td>
                     <td><%= item.category %></td>
                     <td><%= item.faction %></td>
                     <td><%= item.craftOrBuy %></td>
-                    <td><%= _.round(item.craftPrice / 100, 2) %></td>
-                    <td><%= _.round(item.buyPrice / 100, 2) %></td>
-                    <td><%= _.round(item.sellPrice / 100, 2) %></td>
-                    <td><%= _.round(item.margin / 100, 2) %></td>
-                    <td><%= item.craftTime %></td>
-                    <td><%= _.round(item.marginPerMin / 100, 2) %></td>
+                    <td><%= _.round(item.craftPrice / 100, 2) %>&nbsp;<img src="./img/coin.png" alt="coins" height="14"></td>
+                    <td><%= _.round(item.buyPrice / 100, 2) %>&nbsp;<img src="./img/coin.png" alt="coins" height="14"></td>
+                    <td><%= _.round(item.sellPrice / 100, 2) %>&nbsp;<img src="./img/coin.png" alt="coins" height="14"></td>
+                    <td><%= _.round(item.margin / 100, 2) %>&nbsp;<img src="./img/coin.png" alt="coins" height="14"></td>
+                    <td><%= item.craftTime %> min</td>
+                    <td><%= _.round(item.marginPerMin / 100, 2) %>&nbsp;<img src="./img/coin.png" alt="coins" height="14">/min</td>
                 </tr>
                 <% } %>
             </tbody>
     </table>
+    <script>
+        function onFactionFilterClick(event) {
+            const {value: faction, checked} = event.target;
+            document.querySelectorAll(`.table tr[data-faction="${faction}"]`).forEach(el => el.style.display = checked ? '' : 'none');
+            // No items placeholder for no rows displayed
+        }
+        document.querySelectorAll('.faction-filter').forEach(el => el.addEventListener("click", onFactionFilterClick, false))
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
 node_modules
 .idea
 .vscode
-report.html
+report/index.html
