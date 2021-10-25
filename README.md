@@ -1,5 +1,6 @@
 # crossout-craft-calculator
 Receives crafting and pricing information from crossoutdb.com and reports about the most profitable crafts
+Report on (GitHub Pages)[https://vw4.github.io/crossout-craft-calculator/]
 
 ## Jenkins
 Setup jenkins pipeline using [Jenkinsfile](Jenkinsfile)  

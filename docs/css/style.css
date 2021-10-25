@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: #ffb681;
+}
+
+a, a:visited{
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.filters-wrapper {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 70px 10px;
+    padding: 10px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+
+.table-wrapper {
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.table td, .table th {
+    text-align: left;
+    padding: 8px;
+}
+
+.table td {
+    border-right: 1px solid #f8f8f8;
+}
+
+.table tr td:last-child {
+    border-right: 0px;
+}
+
+.table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.rarity-Common .rarity {
+    color: #696969;
+}
+
+.rarity-Rare .rarity {
+    color: #0040fd;
+}
+
+.rarity-Special .rarity {
+    color: #33cccc;
+}
+
+.rarity-Epic .rarity {
+    color: #6a0082;
+}
+
+.rarity-Legendary .rarity {
+    color: #daa520;
+}
+
+.rarity-Relic .rarity {
+    color: #d2691e;
+}
+
+.table tr:nth-child(even).rarity-Common {
+    background: #69696925;
+}
+
+.table tr.rarity-Common {
+    background: #69696935;
+}
+
+.table tr:nth-child(even).rarity-Rare {
+    background: #0040fd25;
+}
+
+.table tr.rarity-Rare {
+    background: #0040fd35;
+}
+
+.table tr:nth-child(even).rarity-Special {
+    background: #33cccc25;
+}
+
+.table tr.rarity-Special {
+    background: #33cccc35;
+}
+
+.table tr:nth-child(even).rarity-Epic {
+    background: #6a008225;
+}
+
+.table tr.rarity-Epic {
+    background: #6a008235;
+}
+
+.table tr:nth-child(even).rarity-Legendary {
+    background: #daa52025;
+}
+
+.table tr.rarity-Legendary {
+    background: #daa52035;
+}
+
+.table tr:nth-child(even).rarity-Relic {
+    background: #daa52025;
+}
+
+.table tr.rarity-Relic {
+    background: #d2691e35;
+}
