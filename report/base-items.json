@@ -1,0 +1,7 @@
+[
+    {"id":446,"name":"Rare Minimum Bench Cost","rarity":"Rare","category":null,"faction":null,"buyPrice":0,"sellPrice":0,"craftOrBuy":"Buy"},
+    {"id":466,"name":"Special Minimum Bench Cost","rarity":"Special","category":null,"faction":null,"buyPrice":0,"sellPrice":0,"craftOrBuy":"Buy"},
+    {"id":447,"name":"Epic Minimum Bench Cost","rarity":"Epic","category":null,"faction":null,"buyPrice":1500,"sellPrice":1500,"craftOrBuy":"Buy"},
+    {"id":448,"name":"Legendary Minimum Bench Cost","rarity":"Legendary","category":null,"faction":null,"buyPrice":7500,"sellPrice":7500,"craftOrBuy":"Buy"},
+    {"id":449,"name":"Relic Minimum Bench Cost","rarity":"Relic","category":null,"faction":null,"buyPrice":0,"sellPrice":0,"craftOrBuy":"Buy"}
+]

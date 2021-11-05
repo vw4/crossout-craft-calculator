@@ -8,6 +8,8 @@ const yargs = require('yargs/yargs');
 (async () => {
     const argv = yargs(process.argv).argv;
     const factions = _.compact(_.map((argv.factions || '').split(','), s => s.trim()));
+    const baseItems = JSON.parse(fs.readFileSync('./base-items.json', 'utf8'));
+    crossoutDB.setItems(baseItems);
     let catalog = await crossoutDB.getItems();
     if (factions.length) {
         catalog = _.filter(catalog, ({faction}) => factions.includes(faction));
